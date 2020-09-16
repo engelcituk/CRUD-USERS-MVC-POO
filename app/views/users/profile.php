@@ -21,7 +21,7 @@
                                     <div class="card-icon">
                                         <i class="fas fa-user"></i>
                                     </div>
-                                    <h4 class="card-title">Agregar usuario</h4>
+                                    <h4 class="card-title">Modificar datos</h4>
                                 </div>
                                 <div class="card-body ">
                                     <div class="row">

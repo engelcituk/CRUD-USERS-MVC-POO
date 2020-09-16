@@ -22,7 +22,7 @@
             <div class="collapse" id="collapseExample">
               <ul class="nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="<?php echo URLROOT; ?>/user/profile">
+                  <a class="nav-link" href="<?php echo URLROOT; ?>/users/profile">
                     <span class="sidebar-mini"> P </span>
                     <span class="sidebar-normal"> <?php echo $_SESSION['emailUser'];?> </span>
                   </a>
