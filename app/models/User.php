@@ -9,14 +9,8 @@ class User {
     }
 
     public function getUsers(){
-        $this->db->query('SELECT *,
-                            users.id as postId,
-                            users.created_at as postCreatedAt,
-                            users.id as userId ,
-                            users.created_at as userCreatedAt
-                          FROM users
-                          ORDER BY users.created_at DESC
-                          ');
+        
+        $this->db->query('SELECT * FROM users');
 
         $users = $this->db->resultSet();
         $total = $this->db->rowCount();
@@ -67,7 +61,7 @@ class User {
 
         //comparo si la contraseña obtenida de la consulta y la que estoy trayendo por parametro sean iguales
         if(password_verify($password, $hashedPassword )){
-            return $usuario; // regreso el registro
+            return $usuario; // regreso el usuario
         }else{
             return false;
         }

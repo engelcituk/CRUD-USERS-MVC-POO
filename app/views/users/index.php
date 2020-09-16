@@ -41,12 +41,11 @@
                                                 <tbody>
                                                     <?php if( $data['total'] > 0 ){ //si los datos son mayores a cero
                                                             $contador = 1;
-                                                            
-                                                            
                                                             foreach ($data['users'] as  $user) {
 
                                                                 $hideBtnDelete = $_SESSION['idUser'] == $user->id ? 'd-none' : '';
                                                                 $name = "'".$user->name."'";
+
                                                                 echo '<tr>
                                                                       <td>'.$user->id .'</td>
                                                                       <td>'.$user->name.'</td>

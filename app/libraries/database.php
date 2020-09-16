@@ -9,7 +9,7 @@
 
  class Database {
 
-     private $host = DB_HOST;
+     private $host = DB_HOST; // del archivo de configuracion app/config/config.php
      private $user = DB_USER;
      private $pass = DB_PASS;
      private $dbname = DB_NAME;
@@ -36,7 +36,7 @@
          }
      }
 
-     // para usar en sentencias sql
+     // para usar en sentencias sql, prepara la consulta
      public function query($sql){
          $this->stmt = $this->dbh->prepare($sql);
      }
