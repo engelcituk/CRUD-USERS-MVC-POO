@@ -17,12 +17,12 @@
   </nav>
   <!-- End Navbar -->
   <div class="wrapper wrapper-full-page">
-    <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('<?php echo URLROOT; ?>/img/mikrotik-logo.jpg'); background-size: cover; background-position: top center;">
+    <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('<?php echo URLROOT; ?>/img/lock.jpg'); background-size: cover; background-position: top center;">
       <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
       <div class="container">
         <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-            <form class="form"  action="<?php echo URLROOT . '/paginas/login'; ?>" method="post">
+            <form class="form"  action="<?php echo URLROOT . '/pages/index'; ?>" method="post">
               <div class="card card-login card-hidden">
                 <div class="card-header card-header-rose text-center">
                   <h4 class="card-title">Iniciar sesión</h4>
@@ -30,19 +30,7 @@
                 </div>
                 <div class="card-body ">
                   <p class="card-description text-center">Ingrese los datos solicitados</p>
-                  <span class="bmd-form-group ">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                        <i class="fas fa-map-pin"></i>
-                        </span>
-                      </div>
-                      
-                      <input type="text" class="form-control <?php echo (!empty($data['ip_err'])) ? 'is-invalid':''; ?>" name="ip" placeholder="Dirección ip" value="<?php echo $data['ip'];?>" >
-                      <span class="invalid-feedback"><?php echo $data['ip_err'];?></span>
-
-                    </div>
-                  </span>
+                  
                   <span class="bmd-form-group">
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -50,8 +38,8 @@
                         <i class="fas fa-user"></i>
                         </span> 
                       </div>
-                      <input type="text" class="form-control <?php echo (!empty($data['username_err'])) ? 'is-invalid':''; ?>" name="username" placeholder="nombre de usuario" value="<?php echo $data['username'];?>">
-                      <span class="invalid-feedback"><?php echo $data['username_err'];?></span>
+                      <input type="email" class="form-control <?php echo (!empty($data['email_err'])) ? 'is-invalid':''; ?>" name="email" placeholder="Correo electrónico" value="<?php echo $data['email'];?>">
+                      <span class="invalid-feedback"><?php echo $data['email_err'];?></span>
 
                     </div>
                   </span>
@@ -92,7 +80,6 @@
             $('.card').removeClass('card-hidden');
           }, 700);
         });
-        localStorage.removeItem('listaTicketsMK');
       </script>
     </body>
 </html>

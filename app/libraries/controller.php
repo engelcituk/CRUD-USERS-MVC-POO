@@ -3,13 +3,14 @@
  * Controlador base
  * Carga de modelos y vistas
  */
- class Controller { 
+ class Controller {
      //cargar modelo
      public function model($model){
          // requerir el archivo del modelo
          require_once '../app/models/'.$model.'.php';
          // se instancia el modelo
          return new $model();   
+
      }
      //metodo para cargar la vista
      public function view($view, $data=[]){
@@ -22,14 +23,4 @@
             die('La vista no existe');
         }
     }
-    // requiero la clase routeros_api y genero una instancia de esta, para usar en los constructores de los controladores
-    public function routerosAPI()
-    {
-        require_once 'RouterosAPI.php'; //ubicado dentro de la carpeta libraries
-
-        return new RouterosAPI(); //genero la instancia
-        
-    }
-
-
  }

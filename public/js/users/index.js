@@ -1,16 +1,6 @@
-const token = document.getElementById("tokenCSRF").value; //obtengo el token, que está en campo oculto del modal hotspotUserProfile
+const token = document.getElementById("tokenCSRF").value; //obtengo el token, que está en campo oculto del modal showUser
 
-// para validar campos acepten solo numeros enteros
-$(function(){
-    $(".validarEntero").keydown(function(event){
-        //alert(event.keyCode);
-        if((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) && event.keyCode !==190  && event.keyCode !==110 && event.keyCode !==8 && event.keyCode !==9  ){
-            return false;
-        }
-    });
-});
-
-let tablaUsers = $('#tablaUsersProfile').DataTable({
+let users = $('#users').DataTable({
     responsive: true,
     //bDestroy: true,
     language: {
@@ -29,38 +19,34 @@ let tablaUsers = $('#tablaUsersProfile').DataTable({
     },
 });
 
-function showHotspotsUserProfile(id) {
+function showUser(id) {
 
     $.ajax({
-        url: "grupolimiteanchobanda/getInfoHotspotUserProfile", 
+        url: "users/getUserById", 
         type: "POST",
         dataType:"json",
         data: {
-            idProfile:id,
+            idUser:id,
             tokenCsrf: token
         },
         success: function(respuesta) { //respuesta es un json
             ok = respuesta.ok;
             if(ok){
-                userProfile = respuesta.userProfile[0]; //regresa un array, se ocupa el de la posición 1
+                usuario = respuesta.user; 
                 //si esos valores no existen, se mandan vacíos
-                idUser = userProfile['.id'];
-                name = userProfile.name || '';
-                sharedUSers = userProfile['shared-users'] || '';
-                velocidad = userProfile['rate-limit'] || '';
-                //los separo por slash "2048k/2048k" --> regresa un array de 2048k , 2048k
-                velocidad = velocidad.split("/"); 
-                comment = userProfile.comment || '';
+                idUser = usuario.id;
+                name = usuario.name;
+                email = usuario.email;
+                password = usuario.password;
                 //se pinta en los campos los valores obtenidos
-                document.getElementById("idHotspotUserProfile").value = idUser;
-                document.getElementById("name").value = name;
-                document.getElementById("sharedUsers").value = sharedUSers;
-                 //tomo el primer valor del array {2048k , 2048k} y tomo solo el valor numerico
-                document.getElementById("limite").value = velocidad[0].replace(/[^\d]/, '');
-                 //tomo el primer valor del array {2048k , 2048k} y tomo solo el string, k o m
-                document.getElementById("tipoUnidad").value = velocidad[0].replace(/[0-9]/g, '');//
-                $('#hotspotUserProfile').modal('show');//muestro el modal con los datos cargados
+                document.getElementById("idUser").value = idUser;
+                document.getElementById("nameEdit").value = name;
+                document.getElementById("emailEdit").value = email;
+                document.getElementById("passwordEditOld").value = password;
+
+                $('#showUser').modal('show');//muestro el modal con los datos cargados
                 activeButton(); //se llama la funcion para activar/desactivar el botón de actualizar del modal
+
             }            
         },
         error: function(respuesta) {
@@ -69,30 +55,18 @@ function showHotspotsUserProfile(id) {
     })
 }
 
-function activeButton() {
-    
-    name = document.getElementById("name").value ;
-    sharedUsers = document.getElementById("sharedUsers").value;
-    tipoUnidad = $("#tipoUnidad :selected").val();
-    limite = document.getElementById("limite").value;
-    
-    let disabled = (name == '' || sharedUsers == '' || tipoUnidad == ''  || limite == '' ) ? true : false ;   
+function updateUser() {
 
-    $('#btnSavehotspotUserProfile').prop("disabled", disabled);
-}
-
-function updateHotspotUserProfile() {
-
-    id = document.getElementById("idHotspotUserProfile").value ;
-    name = document.getElementById("name").value ;
-    sharedUsers = document.getElementById("sharedUsers").value;
-    limite = document.getElementById("limite").value;
-    tipoUnidad = $("#tipoUnidad :selected").val();
+    id = document.getElementById("idUser").value ;
+    name = document.getElementById("nameEdit").value ;
+    email = document.getElementById("emailEdit").value;
+    newPassword = document.getElementById("passwordEdit").value;
+    oldPassword = document.getElementById("passwordEditOld").value;
     //creo el objeto user con los datos recogidos
-    user = { id, name, sharedUsers, limite, tipoUnidad };
+    user = { id, name, email, newPassword, newPassword, oldPassword};
 
     $.ajax({
-        url: "grupolimiteanchobanda/updateHotspotUserProfile", 
+        url: "users/updateUser", 
         type: "POST",
         dataType:"json",
         data: {
@@ -104,7 +78,7 @@ function updateHotspotUserProfile() {
             if(ok){
                 mensaje= respuesta.mensaje;
                 showMessageNotify(mensaje, 'info', 2500); //muestro alerta
-                $('#hotspotUserProfile').modal('hide');
+                $('#showUser').modal('hide');
                 setTimeout(() => {
                     location.reload();
                 }, 3000);
@@ -115,12 +89,11 @@ function updateHotspotUserProfile() {
             console.log('error')
         }
     })
-
 }
 
-function deleteHotspotsUserProfile(id, name) {
+function deleteUser(id, name) {
     Swal.fire({
-        title: `¿Estás seguro de eliminar a ${name}?`,
+        title: `¿Seguro de eliminar a  ${name}?`,
         text: "¡No podrás revertir esto!",
         type: 'warning',
         showCancelButton: true,
@@ -131,7 +104,7 @@ function deleteHotspotsUserProfile(id, name) {
         }).then((result) => {
         if (result.value) {
             $.ajax({
-                url: "grupolimiteanchobanda/deleteHotspotsUserProfile", 
+                url: "users/deleteUser", 
                 type: "POST",
                 dataType:"json",
                 data: {
@@ -166,3 +139,13 @@ function showMessageNotify(mensaje, tipo, duracion) {
           z_index: 3000,
     });
 } 
+
+function activeButton() {
+    name = document.getElementById("nameEdit").value ;
+    email = document.getElementById("emailEdit").value ;
+    password = document.getElementById("passwordEdit").value;
+    
+    let disabled = (name == '' || email == ''  ) ? true : false ;   
+
+    $('#btnSaveUser').prop("disabled", disabled);
+}

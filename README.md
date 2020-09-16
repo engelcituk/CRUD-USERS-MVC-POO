@@ -73,3 +73,53 @@ Aplicación de gestión de usuarios hotspot que utiliza la API Mikrotik PHP. Tie
 ![MikrotikRouter](https://i.mt.lv/cdn/rb_images/1284_hi_res.png)
 
 Es requerido un router mikrotik, en teoria debe funcionar para todos los modelos, dado que todos son gobernados por RouterOS. Sí no se cuenta con un equipo real, es posible (creo yo) con GNS3 emular un router mikrotik.
+
+usuarios de prueba del crud
+
+~~~
+
+Bruce One
+usuario1@gmail.com
+123456
+
+Avonlea Livvy
+iapetus@yahoo.ca
+VyQTXqzkRU
+
+Dorean Trey
+dmiller@icloud.com
+9PU5XoMxnP
+
+Bret Dianna
+bflong@me.com
+oa92gTkk1e
+
+Dorris Michael
+munge@aol.com
+fCDtlf5XzT
+
+Alyce Alva
+penna@msn.com
+UT5D78wyAl
+
+Maurice Taylor
+nullchar@outlook.com
+4onp4Xv19o
+
+Luvenia Colin
+pedwards@msn.com
+Pp6bIB9bDM
+
+Arin Herbert
+macro@icloud.com
+NLT41lmvoc
+
+Winston Kym
+jbailie@aol.com
+0dVSRC1LAQ
+
+Tillie Rosamond
+martink@icloud.com
+w5ouIpnNUE
+
+~~~

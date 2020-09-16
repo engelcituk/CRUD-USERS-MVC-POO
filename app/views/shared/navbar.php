@@ -27,9 +27,9 @@
                 </p>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                <a class="dropdown-item" href="<?php echo URLROOT; ?>/usuariosmikrotik/editarperfilmikrotik">Perfil</a>
+                <a class="dropdown-item" href="<?php echo URLROOT; ?>/users/profile"> <?php echo $_SESSION['emailUser'];?> </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="<?php echo URLROOT; ?>/paginas/logout">Salir</a>
+                <a class="dropdown-item" href="<?php echo URLROOT; ?>/users/logout">Salir</a>
             </div>
             </li>
         </ul>
