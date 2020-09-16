@@ -1,12 +1,8 @@
-# MikrotikPHP apiHotspotUserGenerator
-Generador de usuario hotspot con API Mikrotik PHP 
+# Crud de usuarios
+Crud de usuarios con PHP, MVC POO 
 
-Aplicación de gestión de usuarios hotspot que utiliza la API Mikrotik PHP. Tiene las siguientes capacidades:
-
-1. Puede crear y generar usuarios hotspot a través de la interfaz de la aplicación
-2. Puede administrar el ancho de banda del usuario a través de la interfaz de la aplicación
-3. Puede configurar el tiempo de acceso a la red de hotspot a través de la interfaz de la aplicación
-5. Realizado bajo MVC, POO
+1. Puede crear y generar usuarios  a través de la interfaz de la aplicación
+2. Realizado bajo MVC, POO, plantilla html Material Dashboard Pro
 
 
 # Instalación y uso
@@ -14,67 +10,45 @@ Aplicación de gestión de usuarios hotspot que utiliza la API Mikrotik PHP. Tie
 1. Se requiere PHP en su version 7 en adelante. Recomendable tener tu entorno de prueba XAMPP en Windows o MAMP en Mac.
 2. Poner en htdocs la carpeta del proyecto, (un nombre sin espacios).
 3. En la estrucutura de directorios se cuenta con 3 archivos **.htaccess** de estos se tiene que cambiarle algo a uno de estos.
-4. En la carpeta **public** se modifica en el **.htaccess** la linea ***/base/public/*** por el nombre que le hayas puesto a tu directorio en htdocs. Como ejemplo, ***base*** es la carpeta que contiene el proyecto, su **.htaccess**:
+4. En la carpeta **public** se modifica en el **.htaccess** la linea ***/crud/public/*** por el nombre que le hayas puesto a tu directorio en htdocs. Como ejemplo, ***crud*** es la carpeta que contiene el proyecto, su **.htaccess** queda así:
 
 ~~~
 <IfModule mod_rewrite.c>
     Options -Multiviews
     RewriteEngine On
-    RewriteBase /base/public/
+    RewriteBase /crud/public/
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
 </IfModule>
 ~~~
 
-5. Sí en htdocs le pones de nombre **mikrovouchers** a la carpeta del proyecto, **RewriteBase** queda como  ***RewriteBase /mikrovouchers/public/***
 
-~~~
-<IfModule mod_rewrite.c>
-    Options -Multiviews
-    RewriteEngine On
-    RewriteBase /mikrovouchers/public/
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
-</IfModule>
-~~~
-
-6. Dentro del directorio **app/config** hay un archivo llamado **config.php** con un contenido que tiene unas contantes:
+6. Dentro del directorio **app/config** hay un archivo llamado **config.php** con un contenido que tiene unas contantes. En tu caso modificas el valor de la constante **URLROOT** por el de tu entorno. y **ROOTFOLDER** por el nombre de tu carpeta en htdocs. No olvides igual modificar los datos de acceso a tu base de datos.
 
 ~~~
     <?php 
 
-    // Raíz de la aplicación
-    define('APPROOT', dirname(dirname (__FILE__)));
-    // Url raíz
-    define('URLROOT', 'http://localhost:8888/base');
-    //nombre del sitio
-    define('SITENAME', 'MikrotikPHP');
-    define('ROOTFOLDER','/base/');
-~~~
-
-7. De esas constantes modificas su valor la constante **URLROOT**, y **ROOTFOLDER** por el nombre que tu le hayas puesto a la carpeta en **htdocs**. Donde **URLROOT** quedaría como **http://localhost/mikrovouchers** o **http://localhost:3030/mikrovouchers** si tu entorno de prueba de servidor requiere un puerto en especifico. La constante **ROOTFOLDER** solo tendría el nombre de la carpeta del proyecto **/mikrovouchers/**. Quedando así como se muestra:
-
-~~~
-    <?php 
+    //parametros Base de datos
+    define('DB_HOST', 'localhost');
+    define('DB_USER', 'root');
+    define('DB_PASS', 'root');
+    define('DB_NAME', 'crudusers');
 
     // Raíz de la aplicación
     define('APPROOT', dirname(dirname (__FILE__)));
     // Url raíz
-    define('URLROOT', 'http://localhost/mikrovouchers');
+    define('URLROOT', 'http://localhost:8888/crud');
     //nombre del sitio
-    define('SITENAME', 'MikrotikPHP');
-    define('ROOTFOLDER','/mikrovouchers/');
+    define('SITENAME', 'Crud Users');
+    // version de nuestro aplicacion/framework
+    define('APPVERSION', 'V1.0.0');
+
+    define('ROOTFOLDER','/crud/');
+
 ~~~
 
-8. Por último y no menos importante, se requiere un router Mikrotik con el sistema RouterOS, porque se ocupará la API oficial para PHP para hacer cosas interesantes con este. Para este desarrollo se probó con un equipo similar al de la imagen.
-
-![MikrotikRouter](https://i.mt.lv/cdn/rb_images/1284_hi_res.png)
-
-Es requerido un router mikrotik, en teoria debe funcionar para todos los modelos, dado que todos son gobernados por RouterOS. Sí no se cuenta con un equipo real, es posible (creo yo) con GNS3 emular un router mikrotik.
-
-usuarios de prueba del crud
+7. Los usuarios de prueba del crud, disponibles el sql en el repositorio
 
 ~~~
 
