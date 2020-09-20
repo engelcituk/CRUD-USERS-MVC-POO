@@ -24,6 +24,7 @@ class Pages extends Controller {
                 'email'=> trim($_POST['email']) ,
                 'password' => trim($_POST['password']),
                 'email_err' => '',
+                'email_find' => '',
                 'password_err' => '' 
             ];
             //Validamos el email
@@ -37,6 +38,7 @@ class Pages extends Controller {
             // verificar usuario / correo
             if($this->userModel->findUserByEmail($data['email'])){
                 // usuario encontrado
+                $data['email_find'] = 'Usuario con email encontrado';
             }else{
                 // usuario no encontrado
                 $data['email_err'] = 'El usuario no se ha encontrado';
@@ -65,7 +67,8 @@ class Pages extends Controller {
             $data = [
                 'email'=> '' ,
                 'password' => '',
-                'email_err' => '' ,
+                'email_err' => '',
+                'email_find' => '',
                 'password_err' => ''
             ];
             // Cargar vista

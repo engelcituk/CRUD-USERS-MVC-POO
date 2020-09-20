@@ -38,6 +38,7 @@
                         <i class="fas fa-user"></i>
                         </span> 
                       </div>
+                      <span class="invalid-feedback"><?php echo $data['email_find'];?></span>
                       <input type="email" class="form-control <?php echo (!empty($data['email_err'])) ? 'is-invalid':''; ?>" name="email" placeholder="Correo electrónico" value="<?php echo $data['email'];?>">
                       <span class="invalid-feedback"><?php echo $data['email_err'];?></span>
 

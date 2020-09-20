@@ -37,7 +37,7 @@
 
                                                 <div class="form-group">
                                                     <label for="email" class="form-label"> Correo electrónico *</label> 
-                                                    <input type="text" class="form-control" name="email"  aria-required="true" value="<?php echo $data['email'];?>">
+                                                    <input type="email" class="form-control" name="email"  aria-required="true" value="<?php echo $data['email'];?>">
                                                     <span class="error" for="email"><?php echo $data['email_err'];?></span>
                                                 </div>
     
